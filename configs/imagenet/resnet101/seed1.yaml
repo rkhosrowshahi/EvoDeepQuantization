@@ -1,0 +1,28 @@
+# UB-ECSQ-NSGA2 on ImageNet-1K / ResNet-101, search seed 1.
+
+dataset: imagenet
+arch: resnet101
+data_dir: ./data/imagenet       # contains ILSVRC2012_devkit_t12.tar.gz and ILSVRC2012_img_val.tar
+weights: IMAGENET1K_V1          # torchvision checkpoint
+calibration_size: 5000          # calibration split of the 50k validation images
+test_size: 40000                # disjoint test split
+batch_size: 256
+workers: 8
+
+# Search range of K0: bisection warm-up (Algorithm 4).
+auto_k_bounds: true
+
+# NSGA-II (Section IV-A).
+steps: 15                       # generations G
+np: 100                         # population size NP
+crossover_prob: 0.9             # SBX
+crossover_prob_var: 1.0
+crossover_eta: 15
+mutation_prob: 0.9              # polynomial mutation
+mutation_prob_var: 1.0
+mutation_eta: 10
+hv_ref_point: [1.0, 1.0]
+quantizer_seed: 1
+
+save_dir: ./results/imagenet/resnet101/seed1
+save_interval: 1

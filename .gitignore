@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.DS_Store
+
+# Datasets, downloaded checkpoints, and run outputs
+data/
+checkpoints/
+results/
+wandb/

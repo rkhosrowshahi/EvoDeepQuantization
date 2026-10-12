@@ -1,0 +1,26 @@
+# UB-ECSQ-NSGA2 on CIFAR-10 / ResNet-18, search seed 1.
+
+dataset: cifar10
+arch: resnet18
+data_dir: ./data                # downloaded automatically
+model_path: ./checkpoints/cifar10/resnet18/   # downloaded from the Hugging Face Hub
+batch_size: 512
+workers: 0
+
+# Search range of K0: bisection warm-up (Algorithm 4).
+auto_k_bounds: true
+
+# NSGA-II (Section IV-A).
+steps: 10                       # generations G
+np: 100                         # population size NP
+crossover_prob: 0.9             # SBX
+crossover_prob_var: 1.0
+crossover_eta: 15
+mutation_prob: 0.9              # polynomial mutation
+mutation_prob_var: 1.0
+mutation_eta: 10
+hv_ref_point: [1.0, 1.0]
+quantizer_seed: 1
+
+save_dir: ./results/cifar10/resnet18/seed1
+save_interval: 1
